@@ -9,12 +9,13 @@
   min-height: 100svh;
   gap: 4rem;
   font-family: var(--font-geist-sans);
+  background-color: #d6d6d6;
 }
 
 .dots {
   width: 100vw;
   height: 300vh;
-  background-image: radial-gradient(circle at center, transparent 20%, #000 21%);
+  background-image: radial-gradient(circle at center, transparent 15%, #0f0f0f 16%);
   background-size: 5rem 5rem;
   background-repeat: repeat;
 }
