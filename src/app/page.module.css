@@ -6,31 +6,57 @@
   display: flex;
   align-items: center;
   justify-items: center;
-  min-height: 100svh;
+  height: 100svh;
   gap: 4rem;
   font-family: var(--font-geist-sans);
   background-color: #d6d6d6;
   overflow: hidden;
+  position: relative;
 }
 
 .dots {
   width: 100vw;
-  height: 200vh;
-  background-image: radial-gradient(circle at center, transparent 15%, #0f0f0f 16%);
+  height: 100vh;
+  background-image: radial-gradient(circle at center, transparent 25%, #0f0f0f 26%);
   background-size: 5rem 5rem;
   background-repeat: repeat;
-  animation-name: scrollDots;
-  animation-duration: 20s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  will-change: transform;
 }
 
-@keyframes scrollDots {
-  from {
-    transform: translateY(-50%);
-  }
-  to {
-    transform: translateY(0%);
-  }
+.glass_card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+  width: 100%;
+  max-width: 50rem;
+  color: #fff;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  filter: url(#displacementFilter) drop-shadow(-8px -10px 46px #0000005f);
+  backdrop-filter: brightness(1.1) blur(2px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  z-index: 1;
+}
+
+.dragging {
+  cursor: grabbing;
+}
+
+.glass_card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  -webkit-box-shadow: inset 2px 2px 0px -2px rgba(255, 255, 255, 0.7), 
+                      inset 0 0 3px 1px rgba(255, 255, 255, 0.7);
+  box-shadow: inset 6px 6px 0px -6px rgba(255, 255, 255, 0.7), 
+              inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
 }
