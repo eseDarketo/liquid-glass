@@ -6,9 +6,12 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <div className={styles.dots}>
-        <GlassCard>
-          <h1>Hello</h1>
-        </GlassCard>
+        <h1>
+          Some say we walk alone<br/>
+          Barefoot on wicked stone, no light<br/>
+          And sactuary found never waits around awhile<br/><br/>
+        </h1>
+        <GlassCard />
       </div>
     </div>
   );

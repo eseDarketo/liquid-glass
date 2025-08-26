@@ -14,12 +14,19 @@
   position: relative;
 }
 
+.page h1 {
+  font-size: 4rem;
+}
+
 .dots {
   width: 100vw;
   height: 100vh;
   background-image: radial-gradient(circle at center, transparent 25%, #0f0f0f 26%);
   background-size: 5rem 5rem;
   background-repeat: repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .glass_card {
@@ -27,13 +34,13 @@
   align-items: center;
   justify-content: center;
   padding: 5rem;
-  width: 100%;
-  max-width: 50rem;
+  width: 200vw;
+  height: 200vh;
   color: #fff;
   overflow: hidden;
   border-radius: 1.5rem;
-  filter: url(#displacementFilter) drop-shadow(-8px -10px 46px #0000005f);
-  backdrop-filter: brightness(1.1) blur(2px);
+  filter: url(#displacementFilter);
+  backdrop-filter: brightness(1.2) blur(2px);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -48,7 +55,7 @@
   cursor: grabbing;
 }
 
-.glass_card::before {
+/* .glass_card::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -59,4 +66,4 @@
                       inset 0 0 3px 1px rgba(255, 255, 255, 0.7);
   box-shadow: inset 6px 6px 0px -6px rgba(255, 255, 255, 0.7), 
               inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
-}
+} */
