@@ -6,12 +6,14 @@
   display: flex;
   align-items: center;
   justify-items: center;
-  height: 100svh;
+  min-height: 0;
   gap: 4rem;
   font-family: var(--font-geist-sans);
   background-color: #b7b7b7;
   overflow: hidden;
   position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 
 .page h1 {
@@ -19,15 +21,20 @@
   color: #bdbdbd;
 }
 
+.glass_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
 .dots {
-  width: 100vw;
-  height: 100vh;
+  position: absolute;
+  inset: 0;
   background-image: radial-gradient(circle at center, transparent 25%, #0f0f0f 26%);
   background-size: 5rem 5rem;
   background-repeat: repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  pointer-events: none;
 }
 
 .glass_card {
@@ -35,8 +42,8 @@
   align-items: center;
   justify-content: center;
   padding: 5rem;
-  width: 200vw;
-  height: 200vh;
+  width: 50rem;
+  height: 28.125rem;
   color: #fff;
   overflow: hidden;
   border-radius: 1.5rem;
@@ -45,17 +52,14 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  /* Animated wandering + optional drag offsets are composed here */
+  /* Drag offsets are composed here */
   --drag-x: 0px;
   --drag-y: 0px;
-  --walk-x: 0vw;
-  --walk-y: 0vh;
   transform: translate(
-    calc(-50% + var(--drag-x) + var(--walk-x)),
-    calc(-50% + var(--drag-y) + var(--walk-y))
+    calc(-50% + var(--drag-x)),
+    calc(-50% + var(--drag-y))
   );
   will-change: transform;
-  animation: wanderX 84s ease-in-out infinite, wanderY 114s ease-in-out infinite;
   cursor: grab;
   user-select: none;
   touch-action: none;
@@ -64,19 +68,6 @@
 
 .dragging {
   cursor: grabbing;
-}
-
-/* Typed custom properties so the keyframes interpolate smoothly */
-@property --walk-x {
-  syntax: '<length-percentage>';
-  inherits: false;
-  initial-value: 0vw;
-}
-
-@property --walk-y {
-  syntax: '<length-percentage>';
-  inherits: false;
-  initial-value: 0vh;
 }
 
 @property --drag-x {
@@ -89,35 +80,6 @@
   syntax: '<length>';
   inherits: false;
   initial-value: 0px;
-}
-
-/* Smooth pseudo-random wander within safe bounds so 200vw/200vh always cover */
-@keyframes wanderX {
-  0% { --walk-x: 12vw; }
-  10% { --walk-x: -28vw; }
-  20% { --walk-x: 6vw; }
-  30% { --walk-x: 35vw; }
-  40% { --walk-x: -10vw; }
-  50% { --walk-x: -42vw; }
-  60% { --walk-x: -5vw; }
-  70% { --walk-x: 26vw; }
-  80% { --walk-x: -18vw; }
-  90% { --walk-x: 44vw; }
-  100% { --walk-x: 12vw; }
-}
-
-@keyframes wanderY {
-  0% { --walk-y: -8vh; }
-  10% { --walk-y: 24vh; }
-  20% { --walk-y: -36vh; }
-  30% { --walk-y: 12vh; }
-  40% { --walk-y: 41vh; }
-  50% { --walk-y: -14vh; }
-  60% { --walk-y: -48vh; }
-  70% { --walk-y: 7vh; }
-  80% { --walk-y: 33vh; }
-  90% { --walk-y: -22vh; }
-  100% { --walk-y: -8vh; }
 }
 
 /* .glass_card::before {

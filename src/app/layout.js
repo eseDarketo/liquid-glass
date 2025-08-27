@@ -19,6 +19,7 @@ export default async function RootLayout({ children }) {
           fonts.label.variable,
           fonts.code.variable,
         )}
+        fillWidth fillHeight
       >
         <head>
           <script
@@ -67,7 +68,7 @@ export default async function RootLayout({ children }) {
           />
         </head>
         <Providers>
-          <Column background="page" as="body" fillWidth margin="0" padding="0" style={{ minHeight: "100vh" }}>
+          <Column background="page" as="body" fillWidth fillHeight margin="0" padding="0" style={{ minHeight: "100vh" }}>
             {children}
           </Column>
         </Providers>
