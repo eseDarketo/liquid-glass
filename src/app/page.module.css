@@ -9,13 +9,14 @@
   height: 100svh;
   gap: 4rem;
   font-family: var(--font-geist-sans);
-  background-color: #d6d6d6;
+  background-color: #b7b7b7;
   overflow: hidden;
   position: relative;
 }
 
 .page h1 {
   font-size: 4rem;
+  color: #bdbdbd;
 }
 
 .dots {
@@ -44,7 +45,17 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  /* Animated wandering + optional drag offsets are composed here */
+  --drag-x: 0px;
+  --drag-y: 0px;
+  --walk-x: 0vw;
+  --walk-y: 0vh;
+  transform: translate(
+    calc(-50% + var(--drag-x) + var(--walk-x)),
+    calc(-50% + var(--drag-y) + var(--walk-y))
+  );
+  will-change: transform;
+  animation: wanderX 84s ease-in-out infinite, wanderY 114s ease-in-out infinite;
   cursor: grab;
   user-select: none;
   touch-action: none;
@@ -53,6 +64,60 @@
 
 .dragging {
   cursor: grabbing;
+}
+
+/* Typed custom properties so the keyframes interpolate smoothly */
+@property --walk-x {
+  syntax: '<length-percentage>';
+  inherits: false;
+  initial-value: 0vw;
+}
+
+@property --walk-y {
+  syntax: '<length-percentage>';
+  inherits: false;
+  initial-value: 0vh;
+}
+
+@property --drag-x {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --drag-y {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+/* Smooth pseudo-random wander within safe bounds so 200vw/200vh always cover */
+@keyframes wanderX {
+  0% { --walk-x: 12vw; }
+  10% { --walk-x: -28vw; }
+  20% { --walk-x: 6vw; }
+  30% { --walk-x: 35vw; }
+  40% { --walk-x: -10vw; }
+  50% { --walk-x: -42vw; }
+  60% { --walk-x: -5vw; }
+  70% { --walk-x: 26vw; }
+  80% { --walk-x: -18vw; }
+  90% { --walk-x: 44vw; }
+  100% { --walk-x: 12vw; }
+}
+
+@keyframes wanderY {
+  0% { --walk-y: -8vh; }
+  10% { --walk-y: 24vh; }
+  20% { --walk-y: -36vh; }
+  30% { --walk-y: 12vh; }
+  40% { --walk-y: 41vh; }
+  50% { --walk-y: -14vh; }
+  60% { --walk-y: -48vh; }
+  70% { --walk-y: 7vh; }
+  80% { --walk-y: 33vh; }
+  90% { --walk-y: -22vh; }
+  100% { --walk-y: -8vh; }
 }
 
 /* .glass_card::before {

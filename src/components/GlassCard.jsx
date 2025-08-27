@@ -37,7 +37,8 @@ export default function GlassCard({ children }) {
     useEffect(() => {
         const el = cardRef.current;
         if (!el) return;
-        el.style.transform = `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px))`;
+        el.style.setProperty('--drag-x', `${position.x}px`);
+        el.style.setProperty('--drag-y', `${position.y}px`);
     }, [position]);
 
     return (
@@ -45,16 +46,16 @@ export default function GlassCard({ children }) {
             <div
                 ref={cardRef}
                 className={`${styles.glass_card} ${isDragging ? styles.dragging : ''}`}
-                onPointerDown={handlePointerDown}
-                onPointerMove={handlePointerMove}
-                onPointerUp={endDrag}
-                onPointerCancel={endDrag}
+                // onPointerDown={handlePointerDown}
+                // onPointerMove={handlePointerMove}
+                // onPointerUp={endDrag}
+                // onPointerCancel={endDrag}
             >
                 {children}
             </div>
             <svg style={{ display: 'none' }}>
                 <filter id="displacementFilter">
-                    <feTurbulence type="turbulence" baseFrequency="0.006" numOctaves="2" result="turbulence" seed="1" />
+                    <feTurbulence type="turbulence" baseFrequency="0.005" numOctaves="2" result="turbulence" seed="1" />
                     <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="180" xChannelSelector="R" yChannelSelector='G' />
                 </filter>
             </svg>
