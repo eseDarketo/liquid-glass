@@ -2,9 +2,10 @@ import '@once-ui-system/core/css/styles.css';
 import '@once-ui-system/core/css/tokens.css';
 
 import classNames from "classnames";
-import { Column } from "@once-ui-system/core";
+import { Column, Row, Flex, ToggleButton, Logo, NavIcon } from "@once-ui-system/core";
 import { fonts } from "../resources/once-ui.config";
 import Providers from "@/components/Providers";
+import Navbar from "@/components/Navbar";
 
 export default async function RootLayout({ children }) {
   return (
@@ -69,6 +70,7 @@ export default async function RootLayout({ children }) {
         </head>
         <Providers>
           <Column background="page" as="body" fillWidth fillHeight margin="0" padding="0" style={{ minHeight: "100vh" }}>
+            <Navbar />
             {children}
           </Column>
         </Providers>
