@@ -69,7 +69,7 @@ export default async function RootLayout({ children }) {
           />
         </head>
         <Providers>
-          <Column background="page" as="body" fillWidth fillHeight margin="0" padding="0" style={{ minHeight: "100vh" }}>
+          <Column background="page" as="body" fillWidth fillHeight style={{ height: "100vh", width: "100vw", overflow: "hidden", padding: "7rem 2.5rem", margin: "0" }}>
             <Navbar />
             {children}
           </Column>

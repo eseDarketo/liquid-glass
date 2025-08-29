@@ -10,7 +10,18 @@ export default function Navbar() {
         setIsActive(!isActive);
     };
     return (
-        <Row fillWidth vertical="center" horizontal="end" className={"py-24 px-40"}>
+        <Column
+            fillWidth
+            vertical="center"
+            horizontal="start"
+            style={{ 
+                maxWidth: '20rem',
+                position: 'fixed',
+                top: '2rem',
+                left: '2.5rem',
+                zIndex: '9',
+            }}
+        >
             <Flex
                 paddingX="20"
                 paddingY="8"
@@ -19,12 +30,9 @@ export default function Navbar() {
                 radius="l"
                 horizontal="between"
                 vertical="center"
-                style={{
-                    width: '30rem',
-                }}
-                
+                fillWidth
+
             >
-                <Logo wordmark={false} />
                 <NavIcon
                     isActive={isActive}
                     onClick={handleClick}
@@ -32,6 +40,7 @@ export default function Navbar() {
                     aria-expanded={isActive}
                     aria-controls="demo-nav"
                 />
+                <Logo wordmark={false} />
             </Flex>
 
             {isActive && (
@@ -45,20 +54,20 @@ export default function Navbar() {
                     fillWidth
                     gap="8"
                 >
-                    <ToggleButton fillWidth horizontal="start" size="l">
+                    <ToggleButton fillWidth horizontal="end" size="l">
                         Home
                     </ToggleButton>
-                    <ToggleButton fillWidth horizontal="start" size="l">
+                    <ToggleButton fillWidth horizontal="end" size="l">
                         Products
                     </ToggleButton>
-                    <ToggleButton fillWidth horizontal="start" size="l">
+                    <ToggleButton fillWidth horizontal="end" size="l">
                         About
                     </ToggleButton>
-                    <ToggleButton fillWidth horizontal="start" size="l">
+                    <ToggleButton fillWidth horizontal="end" size="l">
                         Contact
                     </ToggleButton>
                 </Column>
             )}
-        </Row>
+        </Column>
     )
 }
